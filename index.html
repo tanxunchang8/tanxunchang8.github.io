@@ -1,244 +1,749 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人介绍</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#165DFF',
-                        secondary: '#FF7D00',
-                    },
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java开发工程师 - 个人简历</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E3A8A', // 深蓝色 - 代表专业和技术
+            secondary: '#3B82F6', // 蓝色 - Java常用色调
+            accent: '#F59E0B', // 橙色 - 用于强调和CTA
+            dark: '#1F2937',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .skill-tag {
+        @apply bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm;
+      }
+      .java-keyword {
+        @apply font-medium text-red-600;
+      }
+      .java-type {
+        @apply font-medium text-purple-600;
+      }
+      .java-string {
+        @apply font-medium text-green-600;
+      }
+    }
+  </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800">
-    <!-- 导航栏 -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-primary">个人介绍</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="hover:text-primary transition-colors">关于我</a>
-                <a href="#skills" class="hover:text-primary transition-colors">技能</a>
-                <a href="#projects" class="hover:text-primary transition-colors">项目</a>
-                <a href="#contact" class="hover:text-primary transition-colors">联系我</a>
-            </div>
-            <button class="md:hidden text-gray-700">
-                <i class="fa fa-bars text-xl"></i>
-            </button>
-        </div>
-    </nav>
+<body class="bg-gray-50 font-sans text-dark">
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed w-full bg-white/90 backdrop-blur-sm shadow-md z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-primary">Java开发简历</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#about" class="hover:text-secondary transition-all">关于我</a>
+        <a href="#experience" class="hover:text-secondary transition-all">工作经验</a>
+        <a href="#projects" class="hover:text-secondary transition-all">项目经验</a>
+        <a href="#skills" class="hover:text-secondary transition-all">技术技能</a>
+        <a href="#contact" class="hover:text-secondary transition-all">联系方式</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-primary focus:outline-none">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 shadow-lg">
+      <a href="#about" class="block py-2 hover:text-secondary transition-all">关于我</a>
+      <a href="#experience" class="block py-2 hover:text-secondary transition-all">工作经验</a>
+      <a href="#projects" class="block py-2 hover:text-secondary transition-all">项目经验</a>
+      <a href="#skills" class="block py-2 hover:text-secondary transition-all">技术技能</a>
+      <a href="#contact" class="block py-2 hover:text-secondary transition-all">联系方式</a>
+    </div>
+  </nav>
 
-    <!-- 英雄区域 -->
-    <section class="pt-28 pb-16 px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <img src="https://picsum.photos/id/1012/120/120" alt="个人头像" class="rounded-full mx-auto mb-6 border-4 border-primary">
-            <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-gray-800 mb-4">你好，我是 <span class="text-primary">张三</span></h1>
-            <p class="text-gray-600 text-lg mb-8">前端开发工程师 | UI/UX 设计师</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="px-6 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition-all">
-                    查看我的作品
-                </a>
-                <a href="#contact" class="px-6 py-2 bg-white border border-primary text-primary rounded-full hover:bg-gray-50 transition-all">
-                    联系我
-                </a>
-            </div>
+  <!-- 英雄区域 -->
+  <header class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary to-secondary text-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/3 mb-8 md:mb-0">
+          <img src="https://picsum.photos/seed/java-dev/200/200" alt="Java开发者照片" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white shadow-lg mx-auto md:mx-0">
         </div>
-    </section>
+        <div class="md:w-2/3 text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow">Tan</h1>
+          <p class="text-xl md:text-2xl mb-6 text-blue-100">Java开发工程师</p>
+          <p class="text-lg mb-8 max-w-2xl mx-auto md:mx-0 text-blue-100">100年Java企业级应用开发经验，专注于高并发、分布式系统设计与实现，擅长Spring Cloud微服务架构。</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-4">
+            <a href="#contact" class="bg-accent hover:bg-accent/90 text-white font-bold py-2 px-6 rounded-full transition-all shadow-lg hover:shadow-xl">
+              联系我
+            </a>
+            <a href="#" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-6 rounded-full transition-all backdrop-blur-sm">
+              下载简历 <i class="fa fa-download ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <main class="container mx-auto px-4 py-12">
     <!-- 关于我 -->
-    <section id="about" class="py-16 px-4 bg-white">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-10">关于我</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <img src="https://picsum.photos/id/1074/400/500" alt="工作照" class="rounded-lg shadow-lg">
+    <section id="about" class="mb-16">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-3xl font-bold mb-6 inline-block border-b-4 border-secondary pb-2">关于我</h2>
+          <div class="hidden md:block sticky top-24">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4">求职意向</h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-briefcase text-secondary mt-1 mr-2"></i>
+                  <div>
+                    <span class="font-medium">职位：</span>
+                    <span>Java开发</span>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-map-marker text-secondary mt-1 mr-2"></i>
+                  <div>
+                    <span class="font-medium">工作地点：</span>
+                    <span>北京 / 上海 / 深圳</span>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-graduation-cap text-secondary mt-1 mr-2"></i>
+                  <div>
+                    <span class="font-medium">学历：</span>
+                    <span>本科</span>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-code text-secondary mt-1 mr-2"></i>
+                  <div>
+                    <span class="font-medium">工作年限：</span>
+                    <span>5年</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-2/3">
+          <p class="text-lg mb-4">我是一名充满激情的Java开发工程师，拥有5年企业级应用开发经验，专注于构建高性能、可扩展的分布式系统。</p>
+          <p class="text-lg mb-4">精通Java EE技术栈，熟悉Spring Cloud微服务架构，有丰富的大型分布式系统设计与实现经验。善于分析和解决复杂的技术问题，具备良好的团队协作能力。</p>
+          <p class="text-lg mb-4">近期主要关注微服务治理、服务网格(Service Mesh)、云原生应用开发等方向，并在实际项目中落地实践。</p>
+          
+          <!-- 移动端求职意向 -->
+          <div class="md:hidden bg-white p-6 rounded-lg shadow-md mb-6">
+            <h3 class="text-xl font-bold mb-4">求职意向</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fa fa-briefcase text-secondary mt-1 mr-2"></i>
                 <div>
-                    <p class="text-gray-600 mb-4">5年前端开发经验，专注于创建响应式、高性能的Web应用程序。</p>
-                    <p class="text-gray-600 mb-6">擅长将复杂的问题简化为优雅的解决方案，热衷于学习新技术。</p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">HTML5</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">CSS3</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Vue</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">UI/UX</span>
-                    </div>
+                  <span class="font-medium">职位：</span>
+                  <span>Java开发工程师 / 高级Java开发</span>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 技能 -->
-    <section id="skills" class="py-16 px-4 bg-gray-50">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-10">我的技能</h2>
-            <div class="grid md:grid-cols-2 gap-6">
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-map-marker text-secondary mt-1 mr-2"></i>
                 <div>
-                    <h3 class="text-lg font-medium mb-4">前端开发</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>HTML5 & CSS3</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-primary rounded-full" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-primary rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>React</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-primary rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
+                  <span class="font-medium">工作地点：</span>
+                  <span>北京 / 上海 / 深圳</span>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-graduation-cap text-secondary mt-1 mr-2"></i>
+                <div>
+                  <span class="font-medium">学历：</span>
+                  <span>本科</span>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-code text-secondary mt-1 mr-2"></i>
+                <div>
+                  <span class="font-medium">工作年限：</span>
+                  <span>5年</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Java代码示例 -->
+          <div class="bg-gray-900 text-gray-100 p-6 rounded-lg shadow-md overflow-x-auto">
+            <pre class="text-sm md:text-base"><code><span class="java-keyword">public class</span> <span class="java-type">OrderService</span> {
+    <span class="java-keyword">private final</span> <span class="java-type">OrderRepository</span> orderRepository;
+    <span class="java-keyword">private final</span> <span class="java-type">PaymentClient</span> paymentClient;
+    
+    <span class="java-keyword">public</span> <span class="java-type">OrderService</span>(<span class="java-type">OrderRepository</span> orderRepository, 
+                           <span class="java-type">PaymentClient</span> paymentClient) {
+        <span class="java-keyword">this</span>.orderRepository = orderRepository;
+        <span class="java-keyword">this</span>.paymentClient = paymentClient;
+    }
+    
+    <span class="java-keyword">@Transactional</span>
+    <span class="java-keyword">public</span> <span class="java-type">OrderDTO</span> createOrder(<span class="java-type">OrderRequest</span> request) {
+        <span class="java-comment">// 创建订单</span>
+        <span class="java-type">Order</span> order = <span class="java-keyword">new</span> <span class="java-type">Order</span>();
+        order.setUserId(request.getUserId());
+        order.setAmount(request.getAmount());
+        order.setStatus(<span class="java-string">"PENDING"</span>);
+        order = orderRepository.save(order);
+        
+        <span class="java-comment">// 调用支付服务</span>
+        paymentClient.createPayment(order.getId(), order.getAmount());
+        
+        <span class="java-keyword">return</span> <span class="java-keyword">new</span> <span class="java-type">OrderDTO</span>(order);
+    }
+}</code></pre>
+            <p class="mt-2 text-gray-400 text-sm">Spring Boot + JPA 订单服务示例</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 工作经验 -->
+    <section id="experience" class="mb-16">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-3xl font-bold mb-6 inline-block border-b-4 border-secondary pb-2">工作经验</h2>
+        </div>
+        <div class="md:w-2/3">
+          <div class="space-y-8">
+            <!-- 工作经历1 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                <h3 class="text-xl font-bold">高级Java开发工程师</h3>
+                <span class="text-secondary font-semibold">2020年3月 - 至今</span>
+              </div>
+              <p class="text-lg font-semibold mb-2">云智科技有限公司</p>
+              <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                <li>负责基于Spring Cloud Alibaba的微服务架构设计与落地，主导了5个核心服务的开发</li>
+                <li>设计并实现了分布式事务解决方案，使用Seata保证跨服务数据一致性</li>
+                <li>优化服务性能，将接口平均响应时间从200ms降低到50ms，提高系统吞吐量3倍</li>
+                <li>引入Elasticsearch实现日志集中分析和全文检索功能</li>
+                <li>带领4人开发团队，制定编码规范和技术文档，提高团队协作效率</li>
+              </ul>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Cloud</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">MyBatis</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">Elasticsearch</span>
+              </div>
+            </div>
+
+            <!-- 工作经历2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                <h3 class="text-xl font-bold">Java开发工程师</h3>
+                <span class="text-secondary font-semibold">2017年6月 - 2020年2月</span>
+              </div>
+              <p class="text-lg font-semibold mb-2">数智信息技术有限公司</p>
+              <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                <li>参与电商平台订单、库存、支付等核心模块的开发与维护</li>
+                <li>使用Spring Boot重构传统SSH项目，提高系统可维护性和扩展性</li>
+                <li>设计并实现基于Redis的分布式锁，解决高并发下的库存超卖问题</li>
+                <li>开发基于RabbitMQ的消息通知系统，支持订单状态变更实时推送</li>
+                <li>编写单元测试和集成测试，提高代码质量和稳定性</li>
+              </ul>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">MyBatis</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">RabbitMQ</span>
+                <span class="skill-tag">Junit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目经验 -->
+    <section id="projects" class="mb-16">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-3xl font-bold mb-6 inline-block border-b-4 border-secondary pb-2">项目经验</h2>
+        </div>
+        <div class="md:w-2/3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 项目1 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold">分布式电商平台</h3>
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Spring Cloud</span>
+              </div>
+              <p class="text-gray-700 mb-4">基于微服务架构的B2B2C电商平台，支持多商户入驻和多渠道销售。</p>
+              <h4 class="font-semibold mb-2">主要职责：</h4>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+                <li>负责订单、库存、支付服务的设计与开发</li>
+                <li>实现基于Seata的分布式事务解决方案</li>
+                <li>设计基于Redis的库存缓存方案，支持高并发</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Cloud</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">MyBatis</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">Seata</span>
+              </div>
+            </div>
+
+            <!-- 项目2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold">在线教育平台</h3>
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Spring Boot</span>
+              </div>
+              <p class="text-gray-700 mb-4">提供在线课程、直播教学、考试认证的综合性教育平台。</p>
+              <h4 class="font-semibold mb-2">主要职责：</h4>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+                <li>负责课程管理和学习进度追踪模块开发</li>
+                <li>设计基于Elasticsearch的课程搜索功能</li>
+                <li>实现基于WebSocket的实时互动教学功能</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">MyBatis-Plus</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Elasticsearch</span>
+                <span class="skill-tag">WebSocket</span>
+              </div>
+            </div>
+
+            <!-- 项目3 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold">金融风控系统</h3>
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">分布式系统</span>
+              </div>
+              <p class="text-gray-700 mb-4">实时监控用户交易行为，识别风险交易并进行干预。</p>
+              <h4 class="font-semibold mb-2">主要职责：</h4>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+                <li>负责风控规则引擎的设计与实现</li>
+                <li>开发基于Kafka的实时数据处理 pipeline</li>
+                <li>实现基于Redis的用户行为缓存和风控评分计算</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Kafka</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Elasticsearch</span>
+              </div>
+            </div>
+
+            <!-- 项目4 -->
+            <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold">内容管理系统</h3>
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">CMS</span>
+              </div>
+              <p class="text-gray-700 mb-4">支持多终端内容发布和管理的企业级内容管理系统。</p>
+              <h4 class="font-semibold mb-2">主要职责：</h4>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+                <li>负责内容编辑、审核和发布流程的开发</li>
+                <li>实现基于RabbitMQ的内容同步机制</li>
+                <li>设计基于Shiro的权限管理系统</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">MyBatis</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">RabbitMQ</span>
+                <span class="skill-tag">Shiro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技术技能 -->
+    <section id="skills" class="mb-16">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-3xl font-bold mb-6 inline-block border-b-4 border-secondary pb-2">技术技能</h2>
+        </div>
+        <div class="md:w-2/3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 核心技能 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-code text-secondary mr-2"></i> 核心技能
+              </h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Java基础</span>
+                    <span>95%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 95%"></div>
+                  </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-medium mb-4">UI/UX 设计</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Figma</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-secondary rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>交互设计</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-secondary rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>原型设计</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="h-full bg-secondary rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Spring Framework</span>
+                    <span>90%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 90%"></div>
+                  </div>
                 </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Spring Boot</span>
+                    <span>90%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Spring Cloud</span>
+                    <span>85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">MyBatis</span>
+                    <span>85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- 数据库与中间件 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-database text-secondary mr-2"></i> 数据库与中间件
+              </h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">MySQL</span>
+                    <span>90%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Redis</span>
+                    <span>85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">MongoDB</span>
+                    <span>75%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">RabbitMQ</span>
+                    <span>80%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="font-medium">Elasticsearch</span>
+                    <span>75%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 开发工具 -->
+            <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+              <h3 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-wrench text-secondary mr-2"></i> 开发工具与其他技能
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="font-semibold mb-2">构建工具</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Maven</span>
+                    <span class="skill-tag">Gradle</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">版本控制</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">SVN</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">GitLab</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">开发工具</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">IntelliJ IDEA</span>
+                    <span class="skill-tag">Eclipse</span>
+                    <span class="skill-tag">VS Code</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">测试工具</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">JUnit</span>
+                    <span class="skill-tag">Mockito</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">JMeter</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">部署与运维</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">Linux</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">其他技能</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">RESTful API设计</span>
+                    <span class="skill-tag">微服务架构</span>
+                    <span class="skill-tag">分布式系统</span>
+                    <span class="skill-tag">面向对象设计</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- 项目 -->
-    <section id="projects" class="py-16 px-4 bg-white">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-10">我的项目</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://picsum.photos/id/0/400/250" alt="电子商务网站" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-medium mb-2">电子商务网站</h3>
-                        <p class="text-gray-600 text-sm">使用React构建的现代化电商平台</p>
-                    </div>
+    <!-- 联系方式 -->
+    <section id="contact" class="mb-16">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-3xl font-bold mb-6 inline-block border-b-4 border-secondary pb-2">联系方式</h2>
+        </div>
+        <div class="md:w-2/3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4">联系信息</h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker text-secondary mr-3 text-xl"></i>
+                  <span>北京市朝阳区科技园B区</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone text-secondary mr-3 text-xl"></i>
+                  <span>138-1234-5678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope text-secondary mr-3 text-xl"></i>
+                  <span>liming@email.com</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-globe text-secondary mr-3 text-xl"></i>
+                  <span>www.liming.dev</span>
+                </li>
+              </ul>
+              
+              <h3 class="text-xl font-bold mt-6 mb-4">社交媒体</h3>
+              <div class="flex space-x-4">
+                <a href="#" class="text-secondary hover:text-secondary/80 transition-all">
+                  <i class="fa fa-github text-2xl"></i>
+                </a>
+                <a href="#" class="text-secondary hover:text-secondary/80 transition-all">
+                  <i class="fa fa-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-secondary hover:text-secondary/80 transition-all">
+                  <i class="fa fa-cnblogs text-2xl"></i>
+                </a>
+                <a href="#" class="text-secondary hover:text-secondary/80 transition-all">
+                  <i class="fa fa-weixin text-2xl"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4">发送消息</h3>
+              <form id="contact-form" class="space-y-4">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                  <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="您的姓名">
                 </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="https://picsum.photos/id/180/400/250" alt="移动应用UI设计" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-medium mb-2">移动应用UI设计</h3>
-                        <p class="text-gray-600 text-sm">健康追踪应用的用户界面设计</p>
-                    </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                  <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="您的邮箱">
                 </div>
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">消息</label>
+                  <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="请输入您的消息..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-4 rounded-md transition-all">发送消息</button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- 联系我 -->
-    <section id="contact" class="py-16 px-4 bg-gray-50">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-10">联系我</h2>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <form>
-                    <div class="mb-4">
-                        <label for="name" class="block text-gray-700 mb-2">姓名</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
-                    </div>
-                    <div class="mb-4">
-                        <label for="email" class="block text-gray-700 mb-2">邮箱</label>
-                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
-                    </div>
-                    <div class="mb-6">
-                        <label for="message" class="block text-gray-700 mb-2">留言</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
-                        发送消息
-                    </button>
-                </form>
-            </div>
+  <!-- 页脚 -->
+  <footer class="bg-primary text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-lg font-bold">李明 - Java开发工程师</p>
+          <p class="text-gray-400">© 2025 版权所有</p>
         </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-8 px-4">
-        <div class="max-w-3xl mx-auto text-center">
-            <p class="mb-4">© 2025 个人介绍. 保留所有权利.</p>
-            <div class="flex justify-center space-x-4 mb-6">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="fa fa-github text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="fa fa-linkedin text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="fa fa-twitter text-xl"></i>
-                </a>
-            </div>
-            <p class="text-gray-500 text-sm">使用HTML, CSS和JavaScript构建</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white transition-all">
+            <i class="fa fa-github text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all">
+            <i class="fa fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all">
+            <i class="fa fa-cnblogs text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all">
+            <i class="fa fa-weixin text-xl"></i>
+          </a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white', 'shadow-md');
-                navbar.classList.remove('bg-transparent');
-            } else {
-                navbar.classList.remove('bg-white', 'shadow-md');
-                navbar.classList.add('bg-transparent');
-            }
-        });
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('py-2', 'shadow-lg');
+        navbar.classList.remove('py-3', 'shadow-md');
+      } else {
+        navbar.classList.add('py-3', 'shadow-md');
+        navbar.classList.remove('py-2', 'shadow-lg');
+      }
+    });
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    // 移动端菜单切换
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // 关闭移动菜单（如果打开）
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          const icon = menuToggle.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 表单提交处理
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 这里可以添加表单验证和提交逻辑
+        alert('感谢您的留言！这只是一个静态示例，实际项目中可以连接到后端处理表单提交。');
+        contactForm.reset();
+      });
+    }
+
+    // 添加元素进入视口时的动画效果
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('section > div > div:nth-child(2)');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.classList.add('opacity-100', 'translate-y-0');
+          element.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    };
+
+    // 初始设置
+    document.querySelectorAll('section > div > div:nth-child(2)').forEach(element => {
+      element.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+    });
+
+    // 页面加载和滚动时触发动画
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
 </body>
 </html>
     
